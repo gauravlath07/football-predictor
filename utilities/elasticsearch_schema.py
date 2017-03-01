@@ -1,83 +1,86 @@
 schema = {
     "mappings": {
-        "article": {
+        "player": {
             "properties": {
                 "elements": {
                     "type": "object",
                     "properties": {
                         "web_name": {
-                            "type": "string",
+                            "type": "string"
                         },
                         "team": {
-                            "type": "string",
+                            "type": "string"
                         },
                         "first_name": {
-                            "type": "string",
+                            "type": "string"
                         },
                         "last_name": {
-                            "type": "string",
-                        }
+                            "type": "string"
+                        },
                         "fantasy_cost_change": {
-                            "type": "string",
-                        }
+                            "type": "integer"
+                        },
                         "in_dreamteam": {
-                            "type": "boolean",
-                        }
+                            "type": "boolean"
+                        },
                         "dreamteam_count": {
-                            "type": "integer",
-                        }
+                            "type": "integer"
+                        },
                         "selected_percentage": {
-                            "type": "integer",
-                        }
+                            "type": "integer"
+                        },
                         "form": {
-                            "type": "integer",
-                        }
+                            "type": "integer"
+                        },
                         "fantasy_transfers_in": {
-                            "type": "integer",
-                        }
+                            "type": "integer"
+                        },
                         "fantasy_transfers_out": {
-                            "type": "integer",
-                        }
+                            "type": "integer"
+                        },
                         "fantasy_total_points": {
-                            "type": "integer",
-                        }
+                            "type": "integer"
+                        },
                         "fantasy_points_per_game": {
-                            "type": "integer",
-                        }
+                            "type": "integer"
+                        },
                         "minutes_played": {
-                            "type": "integer",
-                        }
+                            "type": "integer"
+                        },
                         "goals_scored": {
-                            "type": "integer",
-                        }
+                            "type": "integer"
+                        },
                         "assists": {
-                            "type": "integer",
-                        }
+                            "type": "integer"
+                        },
                         "yellow_cards": {
-                            "type": "integer",
-                        }
+                            "type": "integer"
+                        },
                         "red_cards": {
-                            "type": "integer",
-                        }
+                            "type": "integer"
+                        },
                         "bonus" : {
-                            "type": "integer",
-                        }
+                            "type": "integer"
+                        },
                         "influence" : {
-                            "type": "integer",
-                        }
+                            "type": "integer"
+                        },
                         "creativity" : {
-                            "type": "integer",
-                        }
+                            "type": "integer"
+                        },
                         "threat" : {
-                            "type": "integer",
-                        }
+                            "type": "integer"
+                        },
                         "ict_index" : {
-                            "type": "integer",
-                        }
+                            "type": "integer"
+                        },
                         "ea_index" : {
                             "type": "integer"
                         }
                     }
+                },
+                "date_indexed" :{
+                    "type" : "date"
                 }
             }
         }
