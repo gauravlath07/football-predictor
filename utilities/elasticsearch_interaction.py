@@ -22,7 +22,7 @@ class ElasticSearchInteraction:
     def create_index(self, index_name):
 
         if not self.es.indices.exists(index_name):
-            self.es.indices.create(index = index_name, body = schema)
+            self.es.indices.create(index_name, schema)
 
     def index_content(self, index_name, doc_type, player_data):
 

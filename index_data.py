@@ -31,7 +31,7 @@ team_data_url = config.get('data_source', 'teams_data_url')
 # sheet = book.sheet_by_name("League Table")
 
 #team_data_processing
-team_data_processing = team_data_processing()
+team_data_processing = team_data_processing(es_host, es_port)
 
 # Establish a MySQL connection
 #database = MySQLdb.connect (host="localhost", user = "root", passwd = "", db = "players")
@@ -39,10 +39,11 @@ team_data_processing = team_data_processing()
 #cursor = database.cursor()
 
 #es.create_index(es_index_name)
-# response = urllib.urlopen(player_data_url)
-# data = json.loads(response.read())
-# es.create_index(es_index_name)
-# es.index_content(es_index_name, es_doc_type, data)
+#response = urllib.urlopen(player_data_url)
+#data = json.loads(response.read())
+#es.create_index(es_index_name)
+#es.index_content(es_index_name, es_doc_type, data)
 
-team_data_processing.get_team_names(es_host, es_port)
+team_data_processing.process_features("player_data", "Manchester United", "Chelsea")
+
 
