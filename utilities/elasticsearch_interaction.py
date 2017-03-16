@@ -53,6 +53,7 @@ class ElasticSearchInteraction:
             temp['threat'] = float(player['threat'])
             temp['ict_index'] = float(player['ict_index'])
             temp['ea_index'] = float(player['ea_index'])
+            temp['icon_link'] = self.make_icon_link(temp['team'])
             dictionary['latest_player_data'].append(temp)
             print "added " + player['web_name'] + " to dictionary"
 
@@ -63,4 +64,9 @@ class ElasticSearchInteraction:
 
     def get_team_name(self, team_code):
         return self.team_code_dict[team_code]
+
+    def make_icon_link(self, team_name):
+        string_name = "icons/"+team_name.replace(" ","")+".png"
+        return string_name
+
 

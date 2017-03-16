@@ -76,6 +76,9 @@ schema = {
                         },
                         "ea_index" : {
                             "type": "integer"
+                        },
+                        "icon_link": {
+                            "type": "string"
                         }
                     }
                 },
