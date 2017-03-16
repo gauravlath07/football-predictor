@@ -29,7 +29,7 @@ class ElasticSearchInteraction:
         dictionary = {}
         dictionary['latest_player_data'] = []
 
-        for player in player_data['elements']:
+        for player in player_data:
             temp = {}
             temp['web_name'] = player['web_name']
             temp['team'] = self.get_team_name(str(player['team']))
