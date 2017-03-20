@@ -1,4 +1,4 @@
-schema = {
+player_schema = {
     "mappings": {
         "player": {
             "properties": {
@@ -18,64 +18,61 @@ schema = {
                             "type": "string"
                         },
                         "fantasy_cost_change": {
-                            "type": "integer"
+                            "type": "float"
                         },
                         "in_dreamteam": {
                             "type": "boolean"
                         },
                         "dreamteam_count": {
-                            "type": "integer"
+                            "type": "float"
                         },
                         "selected_percentage": {
-                            "type": "integer"
+                            "type": "float"
                         },
                         "form": {
-                            "type": "integer"
+                            "type": "float"
                         },
-                        "fantasy_transfers_in": {
-                            "type": "integer"
-                        },
-                        "fantasy_transfers_out": {
-                            "type": "integer"
+                        "fantasy_transfers_out_in": {
+                            "type": "float"
                         },
                         "fantasy_total_points": {
-                            "type": "integer"
+                            "type": "float"
                         },
                         "fantasy_points_per_game": {
-                            "type": "integer"
+                            "type": "float"
                         },
                         "minutes_played": {
-                            "type": "integer"
+                            "type": "float"
                         },
                         "goals_scored": {
-                            "type": "integer"
+                            "type": "float"
                         },
                         "assists": {
-                            "type": "integer"
+                            "type": "float"
                         },
                         "yellow_cards": {
-                            "type": "integer"
+                            "type": "float"
                         },
                         "red_cards": {
-                            "type": "integer"
+                            "type": "float"
                         },
                         "bonus" : {
-                            "type": "integer"
+                            "type": "float"
                         },
                         "influence" : {
-                            "type": "integer"
+                            "type": "float"
                         },
                         "creativity" : {
-                            "type": "integer"
+                            "type": "float"
                         },
                         "threat" : {
-                            "type": "integer"
+                            "type": "float"
                         },
                         "ict_index" : {
-                            "type": "integer"
+                            "type": "float"
                         },
                         "ea_index" : {
-                            "type": "integer"
+                            "type": "float"
                         },
                         "icon_link": {
                             "type": "string"
@@ -84,6 +81,135 @@ schema = {
                 },
                 "date_indexed" :{
                     "type" : "date"
+                }
+            }
+        }
+    }
+}
+
+team_schema = {
+    "mappings": {
+        "team": {
+            "properties": {
+                "elements": {
+                    "type": "object",
+                    "properties": {
+                        "team_name": {
+                            "type": "string"
+                        },
+                        "total_shot_ratio": {
+                            "type": "float"
+                        },
+                        "shots_on_target": {
+                            "type": "float"
+                        },
+                        "shoot_percentage": {
+                            "type": "float"
+                        },
+                        "save_percentage": {
+                            "type": "float"
+                        },
+                        "pdo": {
+                            "type": "float"
+                        }
+                    }
+                },
+                "date_indexed" :{
+                        "type" : "date"
+                }
+            }
+        }
+    }
+}
+
+process_schema = {
+    "mappings": {
+        "match_data": {
+            "properties": {
+                "home_team_name": {
+                    "type": "string"
+                },
+                "away_team_name": {
+                    "type": "string"
+                },
+                # all scores and features are home - away and normalized
+                "score": {
+                    "type": "float"
+                },
+                "fantasy_cost_change": {
+                    "type": "float"
+                },
+                "in_dreamteam": {
+                    "type": "boolean"
+                },
+                "dreamteam_count": {
+                    "type": "float"
+                },
+                "selected_percentage": {
+                    "type": "float"
+                },
+                "form": {
+                    "type": "float"
+                },
+                "fantasy_transfers_out_in": {
+                    "type": "float"
+                },
+                "fantasy_total_points": {
+                    "type": "float"
+                },
+                "fantasy_points_per_game": {
+                    "type": "float"
+                },
+                "minutes_played": {
+                    "type": "float"
+                },
+                "goals_scored": {
+                    "type": "float"
+                },
+                "assists": {
+                    "type": "float"
+                },
+                "yellow_cards": {
+                    "type": "float"
+                },
+                "red_cards": {
+                    "type": "float"
+                },
+                "bonus": {
+                    "type": "float"
+                },
+                "influence": {
+                    "type": "float"
+                },
+                "creativity": {
+                    "type": "float"
+                },
+                "threat": {
+                    "type": "float"
+                },
+                "ict_index": {
+                    "type": "float"
+                },
+                "ea_index": {
+                    "type": "float"
+                },
+                "total_shot_ratio": {
+                    "type": "float"
+                },
+                "shots_on_target": {
+                    "type": "float"
+                },
+                "shoot_percentage": {
+                    "type": "float"
+                },
+                "save_percentage": {
+                    "type": "float"
+                },
+                "pdo": {
+                    "type": "float"
+                },
+                "date_indexed": {
+                    "type": "date"
                 }
             }
         }
