@@ -38,7 +38,18 @@ class team_data_processing:
             # print home_team
             # print away_team
             # print score
-            self.process_features(home_team, away_team, score)
+            if not self.game_indexed(home_team, away_team):
+                self.process_features(home_team, away_team, score)
+            else:
+                print home_team + " vs " + away_team + "has been already indexed"
+
+    def game_indexed(self, home, away):
+        res = self.es.search(index="data_features", body={"query": {"match_phrase": {"home_team_name": home}}})
+        if res['hits']['total'] > 0:
+            away_team_name = res['hits']['hits'][0]['_source']['away_team_name']
+            if away == away_team_name:
+                return True
+        # print res['hits']['total']
 
     def get_main_11(self):
         with open('utilities/main-11.csv') as csvfile:
@@ -46,12 +57,7 @@ class team_data_processing:
             for row in reader:
                 self.main_11[row['team_name']] = row['players'].strip()
 
-    def process_features(self, home_team, away_team, score):
-        player_res = self.es.search(index="player_data", body={"sort": [{"date_indexed": {"order": "desc"}}], "query": {"match_all" : {}},"size" : 1})
-        player_data = player_res['hits']['hits'][0]['_source']['latest_player_data']
-
-        team_res = self.es.search(index="team_data", body={"sort": [{"date_indexed": {"order": "desc"}}], "query": {"match_all" : {}},"size" : 1})
-        team_data = team_res['hits']['hits'][0]['_source']['latest_team_data']
+    def fix_team_names(self,team_data):
         for item in team_data:
             if item['team_name'] == "Man City":
                 item['team_name'] = "Manchester City"
@@ -73,7 +79,25 @@ class team_data_processing:
                 item['team_name'] = "Swansea City"
             elif item['team_name'] == "Bournemouth":
                 item['team_name'] = "AFC Bournemouth"
+            elif item['team_name'] == "West Ham":
+                item['team_name'] = "West Ham United"
+            elif item['team_name'] == "Tottenham":
+                item['team_name'] = "Tottenham Hotspur"
+        return team_data
 
+    def process_features(self, home_team, away_team, score):
+        player_res = self.es.search(index="player_data", body={"sort": [{"date_indexed": {"order": "desc"}}], "query": {"match_all" : {}},"size" : 1})
+        player_data = player_res['hits']['hits'][0]['_source']['latest_player_data']
+
+        for item in player_data:
+            temp_obj = item['web_name']
+            item['web_name'] = self.strip_accents(temp_obj)
+
+        team_res = self.es.search(index="team_data", body={"sort": [{"date_indexed": {"order": "desc"}}], "query": {"match_all" : {}},"size" : 1})
+        team_data = team_res['hits']['hits'][0]['_source']['latest_team_data']
+        team_data = self.fix_team_names(team_data)
+        # print team_data
+        # print home_team
         home_team_data = filter(lambda team_name: team_name['team_name'] == home_team, team_data)
         home_team_data = home_team_data[0]
         away_team_data = filter(lambda team_name: team_name['team_name'] == away_team, team_data)
@@ -87,9 +111,7 @@ class team_data_processing:
         home_team_main11 = temp_home.split(";")
         temp_away = self.main_11[away_team]
         away_team_main11 = temp_away.split(";")
-        for item in player_data:
-            temp_obj = item['web_name']
-            item['web_name'] = self.strip_accents(temp_obj)
+
         # for item in player_data:
         #     print item['web_name']
         #     print type(item['web_name'])
@@ -101,16 +123,11 @@ class team_data_processing:
             temp = individual_player_data[0]
             home_team_main11_data.append(temp)
         for item in away_team_main11:
-            temp_object = filter(lambda player: player['web_name'] == item, player_data)
+            temp_object = filter(lambda player: player['last_name'] == item, player_data)
             individual_player_data = filter(lambda player: player['team'] == away_team, temp_object)
             print item
             temp = individual_player_data[0]
             away_team_main11_data.append(temp)
-
-        # for item in home_team_main11_data:
-        #     print item
-        # for item in away_team_main11_data:
-        #     print item
 
         dictionary = {}
         dictionary['home_team_name'] = home_team

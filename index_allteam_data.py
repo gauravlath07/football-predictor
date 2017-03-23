@@ -20,5 +20,5 @@ testfile.retrieve(teams_data_url, "teams.txt")
 file = open('teams.txt', 'r')
 obj = file.readlines()
 
-# es.create_index(es_index_name,team_schema)
+es.create_index(es_index_name,team_schema)
 es.index_team_content(es_index_name,es_doc_type,obj)

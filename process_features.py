@@ -18,9 +18,9 @@ es_index_name = config.get('elasticsearch', 'PROCESS_INDEX')
 es_doc_type = config.get('elasticsearch', 'PROCESS_DOC_TYPE')
 es = ElasticSearchInteraction(es_host, es_port)
 
-# es.create_index(es_index_name,process_schema)
+es.create_index(es_index_name,process_schema)
 
-process = team_data_processing("localhost","9200")
+process = team_data_processing("localhost", "9200")
 # process.process_features("Manchester United", "Chelsea")
 process.get_team_names()
 # data = u'naïve café'
