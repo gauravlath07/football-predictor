@@ -1,4 +1,5 @@
 import falcon
+import json
 
 class get_score(object):
 
@@ -6,17 +7,14 @@ class get_score(object):
         msg = {
             'score': '100!'
         }
-
         resp.body = json.dumps(msg)
-        # This line can be ommited, because 200 is the default code falcon
-        # returns, but it shows how you can set a status code.
         resp.status = falcon.HTTP_200
 
     def on_post(self, req, resp):
-        print req.stream.read()
+        data = req.stream.read(req.content_length or 0)
+        print data
         resp.status = falcon.HTTP_201
-         msg = {
-            'score': '100!'
+        msg = {
+            'score': '100'
         }
-
         resp.body = json.dumps(msg)
