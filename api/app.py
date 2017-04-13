@@ -1,7 +1,13 @@
 import falcon
 from get_score import get_score
+from falcon_cors import CORS
 
-api = application = falcon.API()
+cors = CORS(allow_origins_list=['http://localhost:3000'],allow_all_origins=True, allow_all_headers=True, allow_all_methods=True, allow_credentials_all_origins=True)
+api = application =falcon.API(middleware=[cors.middleware])
 
 score = get_score()
 api.add_route('/get_score', score)
+
+
+
+

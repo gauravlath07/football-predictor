@@ -186,6 +186,105 @@ class team_data_processing:
         away_obj = sum(d[tag] for d in away_data) / len(away_data)
         return home_obj-away_obj
 
+    def get_features(self, json_response):
+        home_team = json_response['team1_name']
+        away_team = json_response['team2_name']
+
+        player_res = self.es.search(index="player_data",
+                                    body={"sort": [{"date_indexed": {"order": "desc"}}], "query": {"match_all": {}},
+                                          "size": 1})
+        player_data = player_res['hits']['hits'][0]['_source']['latest_player_data']
+
+        for item in player_data:
+            temp_obj = item['web_name']
+            item['web_name'] = self.strip_accents(temp_obj)
+
+        team_res = self.es.search(index="team_data",
+                                  body={"sort": [{"date_indexed": {"order": "desc"}}], "query": {"match_all": {}},
+                                        "size": 1})
+        team_data = team_res['hits']['hits'][0]['_source']['latest_team_data']
+        team_data = self.fix_team_names(team_data)
+
+        home_team_data = filter(lambda team_name: team_name['team_name'] == home_team, team_data)
+        home_team_data = home_team_data[0]
+        away_team_data = filter(lambda team_name: team_name['team_name'] == away_team, team_data)
+        away_team_data = away_team_data[0]
+
+        home_team_main11_data = []
+        away_team_main11_data = []
+
+        # temp_home = self.main_11[home_team]
+        home_team_main11 = []
+        # temp_away = self.main_11[away_team]
+        away_team_main11 = []
+        for item in json_response['team1_players']:
+            temp_ob = item.decode('utf-8')
+            home_team_main11.append(self.strip_accents(temp_ob))
+            # item = self.strip_accents(temp_ob)
+        for item in away_team_main11:
+            temp_ob = item.decode('utf-8')
+            item = self.strip_accents(temp_ob)
+            print item
+        for item in away_team_main11:
+            print "hello"
+            print item
+
+        for item in home_team_main11:
+            temp_object = filter(lambda player: player['web_name'] == item, player_data)
+            individual_player_data = filter(lambda player: player['team'] == home_team, temp_object)
+            print item
+            temp = individual_player_data[0]
+            home_team_main11_data.append(temp)
+        for item in away_team_main11:
+            temp_object = filter(lambda player: player['web_name'] == item, player_data)
+            individual_player_data = filter(lambda player: player['team'] == away_team, temp_object)
+            print item
+            temp = individual_player_data[0]
+            away_team_main11_data.append(temp)
+
+        dictionary = {}
+        dictionary['home_team_name'] = home_team
+        dictionary['away_team_name'] = away_team
+        dictionary['fantasy_cost_change'] = self.avg_and_minus("fantasy_cost_change", home_team_main11_data,
+                                                               away_team_main11_data)
+        dictionary['in_dreamteam'] = self.get_dreametam_countdiff(home_team_main11_data, away_team_main11_data)
+        dictionary['dreamteam_count'] = self.avg_and_minus("dreamteam_count", home_team_main11_data,
+                                                           away_team_main11_data)
+        dictionary['selected_percentage'] = self.avg_and_minus("selected_percentage", home_team_main11_data,
+                                                               away_team_main11_data)
+        dictionary['form'] = self.avg_and_minus("form", home_team_main11_data, away_team_main11_data)
+        dictionary['fantasy_transfers_out_in'] = self.avg_and_minus("fantasy_transfers_out_in", home_team_main11_data,
+                                                                    away_team_main11_data)
+        dictionary['fantasy_total_points'] = self.avg_and_minus("fantasy_points_per_game", home_team_main11_data,
+                                                                away_team_main11_data)
+        dictionary['fantasy_points_per_game'] = self.avg_and_minus("fantasy_points_per_game", home_team_main11_data,
+                                                                   away_team_main11_data)
+        dictionary['minutes_played'] = self.avg_and_minus("minutes_played", home_team_main11_data,
+                                                          away_team_main11_data)
+        dictionary['goals_scored'] = self.avg_and_minus("goals_scored", home_team_main11_data, away_team_main11_data)
+        dictionary['assists'] = self.avg_and_minus("assists", home_team_main11_data, away_team_main11_data)
+        dictionary['yellow_cards'] = self.avg_and_minus("yellow_cards", home_team_main11_data, away_team_main11_data)
+        dictionary['red_cards'] = self.avg_and_minus("red_cards", home_team_main11_data, away_team_main11_data)
+        dictionary['bonus'] = self.avg_and_minus("bonus", home_team_main11_data, away_team_main11_data)
+        dictionary['influence'] = self.avg_and_minus("influence", home_team_main11_data, away_team_main11_data)
+        dictionary['creativity'] = self.avg_and_minus("creativity", home_team_main11_data, away_team_main11_data)
+        dictionary['threat'] = self.avg_and_minus("threat", home_team_main11_data, away_team_main11_data)
+        dictionary['ict_index'] = self.avg_and_minus("ict_index", home_team_main11_data, away_team_main11_data)
+        dictionary['ea_index'] = self.avg_and_minus("ea_index", home_team_main11_data, away_team_main11_data)
+        dictionary['total_shot_ratio'] = float(home_team_data['total_shot_ratio']) - float(
+            away_team_data['total_shot_ratio'])
+        dictionary['shots_on_target'] = float(home_team_data['total_shot_ratio']) - float(
+            away_team_data['total_shot_ratio'])
+        dictionary['shoot_percentage'] = float(home_team_data['total_shot_ratio']) - float(
+            away_team_data['total_shot_ratio'])
+        dictionary['save_percentage'] = float(home_team_data['total_shot_ratio']) - float(
+            away_team_data['total_shot_ratio'])
+        dictionary['pdo'] = float(home_team_data['total_shot_ratio']) - float(away_team_data['total_shot_ratio'])
+
+        return dictionary
+
+
+
 
 
 
