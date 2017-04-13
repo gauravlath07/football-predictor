@@ -1,8 +1,8 @@
 import falcon
 import json
+from indexing.predict import predict
 import sys
-from predict import predict
-
+sys.path.append("indexing/")
 
 class get_score(object):
 
@@ -18,7 +18,8 @@ class get_score(object):
 
     def on_post(self, req, resp):
         data = req.stream.read(req.content_length or 0)
-        player_json = data
+        player_json = json.loads(data)
+        # print type(player_json)
         result = self.predict_instance.process_new_feature(player_json)
         result = str(result)
         resp.status = falcon.HTTP_201

@@ -1,0 +1,210 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>League Table</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table><tr><th class="sorting_asc" tabindex="0" aria-controls="league" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Position: activate to sort column descending" style="width: 138px;">Position</th><th class="sorting" tabindex="0" aria-controls="league" rowspan="1" colspan="1" aria-label="Team: activate to sort column ascending" style="width: 207px;">Team</th><th class="sorting" tabindex="0" aria-controls="league" rowspan="1" colspan="1" aria-label="Played: activate to sort column ascending" style="width: 115px;">Played</th><th class="text-right sorting" tabindex="0" aria-controls="league" rowspan="1" colspan="1" aria-label="TSR – Total Shots Ratio/Percentage A ratio to explain how teams fare against their average competition in the shots battle. Ex: If Manchester City has 20 shots in the match and Newcastle have 10, City’s TSR for that match is 67%, Newcastle’s is 33%.&quot;>TSR: activate to sort column ascending" style="width: 71px;"><a data-placement="top" data-html="true" title="" class="tooltip-hover" data-original-title="<strong>TSR</strong> – Total Shots Ratio/Percentage <br>A ratio to explain how teams fare against their average competition in the shots battle. Ex: If Manchester City has 20 shots in the match and Newcastle have 10, City’s TSR for that match is 67%, Newcastle’s is 33%.">TSR</a></th><th class="text-right sorting" tabindex="0" aria-controls="league" rowspan="1" colspan="1" aria-label="SoTR – Shots on Target Ratio/Percentage&quot;>SoTR: activate to sort column ascending" style="width: 88px;"><a data-placement="top" data-html="true" title="" class="tooltip-hover" data-original-title="<strong>SoTR</strong> – Shots on Target Ratio/Percentage">SoTR</a></th><th class="text-right sorting" tabindex="0" aria-controls="league" rowspan="1" colspan="1" aria-label="Shoot % - Percentage of total shots on target that have scored.&quot;>Shoot %: activate to sort column ascending" style="width: 133px;"><a data-placement="top" data-html="true" title="" class="tooltip-hover" data-original-title="<strong>Shoot %</strong> - Percentage of total shots on target that have scored.">Shoot %</a></th><th class="text-right sorting" tabindex="0" aria-controls="league" rowspan="1" colspan="1" aria-label="Save % - Percentage of opposition total shots on target that have been saved.&quot;>Save %: activate to sort column ascending" style="width: 120px;"><a data-placement="top" data-html="true" title="" class="tooltip-hover" data-original-title="<strong>Save %</strong> - Percentage of opposition total shots on target that have been saved.">Save %</a></th><th class="text-right sorting" tabindex="0" aria-controls="league" rowspan="1" colspan="1" aria-label="PDO - the sum of a teams shooting percentage (goals/shots on target) and its save percentage (saves/shots on target against).&quot;>PDO: activate to sort column ascending" style="width: 89px;"><a data-placement="top" data-html="true" title="" class="tooltip-hover" data-original-title="<strong>PDO</strong> - the sum of a teams shooting percentage (goals/shots on target) and its save percentage (saves/shots on target against).">PDO</a></th></tr><tr><td colspan="8" rowspan="1">
+						<b>Notes:</b><br>
+						<strong>TSR</strong> – Total Shots Ratio/Percentage <br>
+						A ratio to explain how teams fare against their average competition in the shots battle. Ex: If Manchester City has 20 shots in the match and Newcastle have 10, City’s TSR for that match is 67%, Newcastle’s is 33%.<br>
+						<strong>SoTR</strong> – Shots on Target Ratio/Percentage<br>
+						<strong>Shoot %</strong> - Percentage of total shots on target that have scored.<br>
+						<strong>Save %</strong> - Percentage of opposition total shots on target that have been saved.<br>
+						<strong>PDO</strong> - the sum of a teams shooting percentage (goals/shots on target) and its save percentage (saves/shots on target against).
+						
+						</td></tr><tr>
+						<td class="sorting_1">1</td>
+						<td>Chelsea</td>
+						<td>31</td>
+
+						<td class="text-right">63.03</td>
+						<td class="text-right">65.73</td>
+						<td class="text-right">39.88</td>
+						<td class="text-right">70.59</td>
+						<td class="text-right">110.47</td>
+						</tr><tr>
+						<td class="sorting_1">2</td>
+						<td>Tottenham</td>
+						<td>31</td>
+
+						<td class="text-right">65.57</td>
+						<td class="text-right">68.10</td>
+						<td class="text-right">33.68</td>
+						<td class="text-right">75.28</td>
+						<td class="text-right">108.97</td>
+						</tr><tr>
+						<td class="sorting_1">3</td>
+						<td>Liverpool</td>
+						<td>32</td>
+
+						<td class="text-right">66.96</td>
+						<td class="text-right">65.99</td>
+						<td class="text-right">34.69</td>
+						<td class="text-right">60.40</td>
+						<td class="text-right">95.09</td>
+						</tr><tr>
+						<td class="sorting_1">4</td>
+						<td>Man City</td>
+						<td>31</td>
+
+						<td class="text-right">66.53</td>
+						<td class="text-right">65.61</td>
+						<td class="text-right">36.14</td>
+						<td class="text-right">59.77</td>
+						<td class="text-right">95.91</td>
+						</tr><tr>
+						<td class="sorting_1">5</td>
+						<td>Man United</td>
+						<td>30</td>
+
+						<td class="text-right">65.77</td>
+						<td class="text-right">68.27</td>
+						<td class="text-right">24.86</td>
+						<td class="text-right">72.09</td>
+						<td class="text-right">96.96</td>
+						</tr><tr>
+						<td class="sorting_1">6</td>
+						<td>Arsenal</td>
+						<td>30</td>
+
+						<td class="text-right">57.55</td>
+						<td class="text-right">54.12</td>
+						<td class="text-right">40.40</td>
+						<td class="text-right">69.53</td>
+						<td class="text-right">109.93</td>
+						</tr><tr>
+						<td class="sorting_1">7</td>
+						<td>Everton</td>
+						<td>32</td>
+
+						<td class="text-right">52.71</td>
+						<td class="text-right">58.25</td>
+						<td class="text-right">34.34</td>
+						<td class="text-right">69.75</td>
+						<td class="text-right">104.09</td>
+						</tr><tr>
+						<td class="sorting_1">8</td>
+						<td>West Brom</td>
+						<td>32</td>
+
+						<td class="text-right">44.30</td>
+						<td class="text-right">43.21</td>
+						<td class="text-right">37.14</td>
+						<td class="text-right">70.29</td>
+						<td class="text-right">107.43</td>
+						</tr><tr>
+						<td class="sorting_1">9</td>
+						<td>Southampton</td>
+						<td>30</td>
+
+						<td class="text-right">58.28</td>
+						<td class="text-right">61.45</td>
+						<td class="text-right">24.18</td>
+						<td class="text-right">61.46</td>
+						<td class="text-right">85.64</td>
+						</tr><tr>
+						<td class="sorting_1">10</td>
+						<td>Watford</td>
+						<td>31</td>
+
+						<td class="text-right">43.52</td>
+						<td class="text-right">44.87</td>
+						<td class="text-right">30.51</td>
+						<td class="text-right">64.14</td>
+						<td class="text-right">94.65</td>
+						</tr><tr>
+						<td class="sorting_1">11</td>
+						<td>Leicester</td>
+						<td>31</td>
+
+						<td class="text-right">44.78</td>
+						<td class="text-right">44.44</td>
+						<td class="text-right">32.50</td>
+						<td class="text-right">66.00</td>
+						<td class="text-right">98.50</td>
+						</tr><tr>
+						<td class="sorting_1">12</td>
+						<td>Burnley</td>
+						<td>32</td>
+
+						<td class="text-right">36.25</td>
+						<td class="text-right">36.40</td>
+						<td class="text-right">31.07</td>
+						<td class="text-right">75.56</td>
+						<td class="text-right">106.62</td>
+						</tr><tr>
+						<td class="sorting_1">13</td>
+						<td>Stoke</td>
+						<td>32</td>
+
+						<td class="text-right">42.61</td>
+						<td class="text-right">42.96</td>
+						<td class="text-right">29.31</td>
+						<td class="text-right">69.48</td>
+						<td class="text-right">98.79</td>
+						</tr><tr>
+						<td class="sorting_1">14</td>
+						<td>West Ham</td>
+						<td>32</td>
+
+						<td class="text-right">50.36</td>
+						<td class="text-right">42.65</td>
+						<td class="text-right">36.21</td>
+						<td class="text-right">63.46</td>
+						<td class="text-right">99.67</td>
+						</tr><tr>
+						<td class="sorting_1">15</td>
+						<td>Bournemouth</td>
+						<td>32</td>
+
+						<td class="text-right">44.53</td>
+						<td class="text-right">45.30</td>
+						<td class="text-right">34.62</td>
+						<td class="text-right">62.42</td>
+						<td class="text-right">97.04</td>
+						</tr><tr>
+						<td class="sorting_1">16</td>
+						<td>Crystal Palace</td>
+						<td>31</td>
+
+						<td class="text-right">46.62</td>
+						<td class="text-right">43.54</td>
+						<td class="text-right">35.59</td>
+						<td class="text-right">67.32</td>
+						<td class="text-right">102.91</td>
+						</tr><tr>
+						<td class="sorting_1">17</td>
+						<td>Hull</td>
+						<td>32</td>
+
+						<td class="text-right">38.06</td>
+						<td class="text-right">37.41</td>
+						<td class="text-right">30.00</td>
+						<td class="text-right">65.22</td>
+						<td class="text-right">95.22</td>
+						</tr><tr>
+						<td class="sorting_1">18</td>
+						<td>Swansea</td>
+						<td>32</td>
+
+						<td class="text-right">42.65</td>
+						<td class="text-right">43.77</td>
+						<td class="text-right">30.08</td>
+						<td class="text-right">57.59</td>
+						<td class="text-right">87.68</td>
+						</tr><tr>
+						<td class="sorting_1">19</td>
+						<td>Middlesbrough</td>
+						<td>31</td>
+
+						<td class="text-right">40.28</td>
+						<td class="text-right">37.68</td>
+						<td class="text-right">28.21</td>
+						<td class="text-right">71.32</td>
+						<td class="text-right">99.52</td>
+						</tr><tr>
+						<td class="sorting_1">20</td>
+						<td>Sunderland</td>
+						<td>31</td>
+
+						<td class="text-right">35.32</td>
+						<td class="text-right">31.33</td>
+						<td class="text-right">25.53</td>
+						<td class="text-right">72.82</td>
+						<td class="text-right">98.35</td>
+						</tr></table></body></html>
