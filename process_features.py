@@ -8,6 +8,7 @@ from utilities.elasticsearch_schema import process_schema
 import sys
 # sys.setdefaultencoding("utf-8")
 
+# config stuff
 config = SafeConfigParser()
 config.read('utilities/config.ini')
 
@@ -21,8 +22,5 @@ es = ElasticSearchInteraction(es_host, es_port)
 es.create_index(es_index_name,process_schema)
 
 process = team_data_processing("localhost", "9200")
-# process.process_features("Manchester United", "Chelsea")
 process.get_team_names()
-# data = u'naïve café'
-# normal = unicodedata.normalize('NFKD', data).encode('ASCII', 'ignore')
-# print process.strip_accents("Bellerín")
+

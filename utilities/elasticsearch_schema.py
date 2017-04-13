@@ -114,7 +114,7 @@ team_schema = {
                         }
                     }
                 },
-                "date_indexed" :{
+                "date_indexed" : {
                         "type" : "date"
                 }
             }

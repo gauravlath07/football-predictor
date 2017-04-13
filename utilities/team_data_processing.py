@@ -3,7 +3,7 @@
 import re
 from elasticsearch import Elasticsearch
 import csv
-from sklearn import preprocessing
+# from sklearn import preprocessing
 import unicodedata
 from utilities.elasticsearch_interaction import ElasticSearchInteraction
 import datetime
@@ -57,7 +57,7 @@ class team_data_processing:
             for row in reader:
                 self.main_11[row['team_name']] = row['players'].strip()
 
-    def fix_team_names(self,team_data):
+    def fix_team_names(self, team_data):
         for item in team_data:
             if item['team_name'] == "Man City":
                 item['team_name'] = "Manchester City"
@@ -83,6 +83,8 @@ class team_data_processing:
                 item['team_name'] = "West Ham United"
             elif item['team_name'] == "Tottenham":
                 item['team_name'] = "Tottenham Hotspur"
+            elif item['team_name'] == "Burnley FC":
+                item['team_name'] = "Burnley"
         return team_data
 
     def process_features(self, home_team, away_team, score):
@@ -96,13 +98,11 @@ class team_data_processing:
         team_res = self.es.search(index="team_data", body={"sort": [{"date_indexed": {"order": "desc"}}], "query": {"match_all" : {}},"size" : 1})
         team_data = team_res['hits']['hits'][0]['_source']['latest_team_data']
         team_data = self.fix_team_names(team_data)
-        # print team_data
-        # print home_team
+
         home_team_data = filter(lambda team_name: team_name['team_name'] == home_team, team_data)
         home_team_data = home_team_data[0]
         away_team_data = filter(lambda team_name: team_name['team_name'] == away_team, team_data)
         away_team_data = away_team_data[0]
-        # print home_team_data
 
         home_team_main11_data = []
         away_team_main11_data = []
@@ -112,10 +112,6 @@ class team_data_processing:
         temp_away = self.main_11[away_team]
         away_team_main11 = temp_away.split(";")
 
-        # for item in player_data:
-        #     print item['web_name']
-        #     print type(item['web_name'])
-
         for item in home_team_main11:
             temp_object = filter(lambda player: player['web_name'] == item, player_data)
             individual_player_data = filter(lambda player: player['team'] == home_team, temp_object)
@@ -123,7 +119,7 @@ class team_data_processing:
             temp = individual_player_data[0]
             home_team_main11_data.append(temp)
         for item in away_team_main11:
-            temp_object = filter(lambda player: player['last_name'] == item, player_data)
+            temp_object = filter(lambda player: player['web_name'] == item, player_data)
             individual_player_data = filter(lambda player: player['team'] == away_team, temp_object)
             print item
             temp = individual_player_data[0]
@@ -134,7 +130,7 @@ class team_data_processing:
         dictionary['away_team_name'] = away_team
         dictionary['score'] = score
         dictionary['fantasy_cost_change'] = self.avg_and_minus("fantasy_cost_change", home_team_main11_data, away_team_main11_data)
-        # dictionary['in_dreamteam'] =
+        dictionary['in_dreamteam'] = self.get_dreametam_countdiff(home_team_main11_data, away_team_main11_data)
         dictionary['dreamteam_count'] = self.avg_and_minus("dreamteam_count", home_team_main11_data, away_team_main11_data)
         dictionary['selected_percentage'] = self.avg_and_minus("selected_percentage", home_team_main11_data, away_team_main11_data)
         dictionary['form'] = self.avg_and_minus("form", home_team_main11_data, away_team_main11_data)
@@ -162,7 +158,17 @@ class team_data_processing:
         self.es_inter.index_features("data_features", "match_data", dictionary)
         print "indexed" + home_team + " vs " + away_team
 
-
+    def get_dreametam_countdiff(self, home_team_array, away_team_array):
+        home_int = 0
+        away_int = 0
+        for item in home_team_array:
+            if item['in_dreamteam'] == True:
+                home_int += 1
+        for item in away_team_array:
+            if item['in_dreamteam'] == True:
+                away_int += 1
+        final = home_int-away_int
+        return final
 
     def normalize_data(self, array):
         normalized_array = preprocessing.normalize(array)
@@ -179,7 +185,6 @@ class team_data_processing:
         home_obj = sum(d[tag] for d in home_data) / len(home_data)
         away_obj = sum(d[tag] for d in away_data) / len(away_data)
         return home_obj-away_obj
-
 
 
 

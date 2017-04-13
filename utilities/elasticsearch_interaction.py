@@ -94,46 +94,11 @@ class ElasticSearchInteraction:
             print "added " + team_data[team_index]
             team_index += 10
 
+        dictionary['date_indexed'] = datetime.datetime.today()
         self.es.index(index=index_name, doc_type=doc_type, body=dictionary)
         print "all done"
 
     def index_features(self, index_name, doc_type, features_data):
-        # dictionary = {}
-        # dictionary['home_team_name'] = features_data['home_team_name']
-        # dictionary['away_team_name'] = features_data['away_team_name']
-        # dictionary['score'] = features_data['score']
-        # dictionary['fantasy_cost_change'] = float(features_data['fantasy_cost_change'])
-        # # dictionary['in_dreamteam'] = bool(features_data['in_dreamteam'])
-        # dictionary['dreamteam_count'] = float(features_data['dreamteam_count'])
-        # dictionary['selected_percentage'] = float(features_data['selected_percentage'])
-        # dictionary['form'] = float(features_data['form'])
-        # dictionary['fantasy_transfers_out_in'] = float(features_data['transfers_out']) - float(player['transfers_in'])
-        # dictionary['fantasy_total_points'] = float(features_data['total_points'])
-        # dictionary['fantasy_points_per_game'] = float(features_data['points_per_game'])
-        # dictionary['minutes_played'] = float(features_data['minutes'])
-        # dictionary['goals_scored"'] = float(features_data['goals_scored'])
-        # dictionary['assists'] = float(features_data['assists'])
-        # dictionary['yellow_cards'] = float(features_data['yellow_cards'])
-        # dictionary['red_cards'] = float(features_data['red_cards'])
-        # dictionary['bonus'] = float(features_data['bonus'])
-        # dictionary['influence'] = float(features_data['influence'])
-        # dictionary['creativity'] = float(features_data['creativity'])
-        # dictionary['threat'] = float(features_data['threat'])
-        # dictionary['ict_index'] = float(features_data['ict_index'])
-        # dictionary['ea_index'] = float(features_data['ea_index'])
-        # dictionary['total_shot_ratio'] = float(features_data['total_shot_ratio'])
-        # dictionary['shots_on_target'] = float(features_data['shots_on_target'])
-        # dictionary['shoot_percentage'] = float(features_data['shoot_percentage'])
-        # dictionary['save_percentage'] = float(features_data['save_percentage'])
-        # dictionary['pdo'] = float(features_data['pdo'])
-        # dictionary['date_indexed'] = datetime.datetime.today()
-
-
         self.es.index(index=index_name, doc_type=doc_type, body=features_data)
-
-        # def strip_tags(self, html):
-    #     s = MLStripper()
-    #     s.feed(html)
-    #     return s.get_data()
 
 
