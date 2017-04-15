@@ -148,6 +148,6 @@ class predict:
         self.alg.fit(self.df[self.predictors], self.df['score'])
 
         predictions = self.alg.predict(df_predict[self.predictors])
-        print predictions
+        return predictions
 
 

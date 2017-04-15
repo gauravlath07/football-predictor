@@ -152,10 +152,10 @@ class team_data_processing:
         dictionary['ict_index'] = self.avg_and_minus("ict_index",home_team_main11_data, away_team_main11_data)
         dictionary['ea_index'] = self.avg_and_minus("ea_index",home_team_main11_data, away_team_main11_data)
         dictionary['total_shot_ratio'] = float(home_team_data['total_shot_ratio']) - float(away_team_data['total_shot_ratio'])
-        dictionary['shots_on_target'] = float(home_team_data['total_shot_ratio']) - float(away_team_data['total_shot_ratio'])
-        dictionary['shoot_percentage'] = float(home_team_data['total_shot_ratio']) - float(away_team_data['total_shot_ratio'])
-        dictionary['save_percentage'] = float(home_team_data['total_shot_ratio']) - float(away_team_data['total_shot_ratio'])
-        dictionary['pdo'] = float(home_team_data['total_shot_ratio']) - float(away_team_data['total_shot_ratio'])
+        dictionary['shots_on_target'] = float(home_team_data['shots_on_target']) - float(away_team_data['shots_on_target'])
+        dictionary['shoot_percentage'] = float(home_team_data['shoot_percentage']) - float(away_team_data['shoot_percentage'])
+        dictionary['save_percentage'] = float(home_team_data['save_percentage']) - float(away_team_data['save_percentage'])
+        dictionary['pdo'] = float(home_team_data['pdo']) - float(away_team_data['pdo'])
         dictionary['date_indexed'] = datetime.datetime.today()
 
         self.es_inter.index_features("data_features", "match_data", dictionary)
@@ -221,7 +221,7 @@ class team_data_processing:
         for item in json_response['team1_players']:
             temp_ob = item.decode('utf-8')
             home_team_main11.append(self.strip_accents(temp_ob))
-        for item2 in json_response['team2_players']:
+        for item in json_response['team2_players']:
             temp_ob = item.decode('utf-8')
             away_team_main11.append(self.strip_accents(temp_ob))
 
@@ -262,13 +262,13 @@ class team_data_processing:
         dictionary['ea_index'] = self.avg_and_minus("ea_index", home_team_main11_data, away_team_main11_data)
         dictionary['total_shot_ratio'] = float(home_team_data['total_shot_ratio']) - float(
             away_team_data['total_shot_ratio'])
-        dictionary['shots_on_target'] = float(home_team_data['total_shot_ratio']) - float(
-            away_team_data['total_shot_ratio'])
-        dictionary['shoot_percentage'] = float(home_team_data['total_shot_ratio']) - float(
-            away_team_data['total_shot_ratio'])
-        dictionary['save_percentage'] = float(home_team_data['total_shot_ratio']) - float(
-            away_team_data['total_shot_ratio'])
-        dictionary['pdo'] = float(home_team_data['total_shot_ratio']) - float(away_team_data['total_shot_ratio'])
+        dictionary['shots_on_target'] = float(home_team_data['shots_on_target']) - float(
+            away_team_data['shots_on_target'])
+        dictionary['shoot_percentage'] = float(home_team_data['shoot_percentage']) - float(
+            away_team_data['shoot_percentage'])
+        dictionary['save_percentage'] = float(home_team_data['save_percentage']) - float(
+            away_team_data['save_percentage'])
+        dictionary['pdo'] = float(home_team_data['pdo']) - float(away_team_data['pdo'])
 
         return dictionary
 

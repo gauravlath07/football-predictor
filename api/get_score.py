@@ -21,7 +21,14 @@ class get_score(object):
         player_json = json.loads(data)
         # print type(player_json)
         result = self.predict_instance.process_new_feature(player_json)
-        result = str(result)
+        result = result[0]
+        if result == 1.0:
+            result = player_json['team1_name'] + " wins"
+        elif result == 0:
+            result = "draw game"
+        else:
+            result = player_json['team2_name'] + " wins"
+        # result = str(result)
         resp.status = falcon.HTTP_201
         msg = {
             'score': result
