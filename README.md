@@ -39,13 +39,13 @@ Currently the data model consists of all English Premier League games from March
 The opportunities are literally endless...
 
 ### Important Links
-Website link - http://football.gauravlath.xyz
-Front end repository - https://github.com/chenleishen/football-predictor-frontend
+Website link - http://football.gauravlath.xyz <br />
+Front end repository - https://github.com/chenleishen/football-predictor-frontend <br />
 Back end repository - https://github.com/gauravlath07/football-predictor
 
 ## Want to contribute ??
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes 
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. Start off by cloning both the front end and back end repositories to your local machine. 
 
 ### Prerequisites
 
@@ -59,19 +59,17 @@ For Testing and Developing you will need:
 npm install gulp-cli --global
 ```
 
-### Installing
-
-First, git clone this repo
+### Installing Dependancies
 
 Make sure you have npm and Gulp Command Line Tool
 
-Then install npm modules
+Then enter the front end repo using comamnd line and install npm modules by 
 
 ```
 npm install
 ```
 
-Then start the app
+Then start the application using -
 
 ```
 npm start
@@ -79,11 +77,15 @@ npm start
 
 you should probably see a message from console that says listening on localhost:3000
 
-Go to localhost:3000 in browser and it will be running
+Type in localhost:3000 in browser and the website will be up and running. 
 
-## Running the tests
+Time to get the the supporting Python API running. Enter the Python repo on command line and type - 
 
-There are no tests for this project, tests are conducted by manual labor
+```
+pip install -r requirements.txt
+```
+
+and you'll have all the dependancies started.
 
 ### Developing
 
@@ -95,7 +97,9 @@ gulp watch
 ```
 gulp browserify
 ```
-Make sure you have gulp command line tool though
+Make sure you have gulp command line tool though.
+
+The only thing missing to get your app running is the database. Contact [me](mailto:glath@uwaterloo.ca) to get a CSV copy of the training dataset and you are good to go :)))
 
 ## Built With
 
