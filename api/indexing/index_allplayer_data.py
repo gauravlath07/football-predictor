@@ -22,7 +22,6 @@ es.create_index(es_index_name,player_schema)
 response = urllib.urlopen(player_data_url)
 myfile = response.read()
 data = json.loads(myfile)
-es.create_index(es_index_name,player_schema)
 es.index_player_content(es_index_name, es_doc_type, data)
 
 

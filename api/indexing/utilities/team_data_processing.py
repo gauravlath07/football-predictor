@@ -35,14 +35,16 @@ class team_data_processing:
                 n = re.search("[A-Z]", temp_string)
                 away_position = n.start()
                 away_team = temp_string[away_position:]
-                score = float(item[score_position:score_position+1])-float(item[score_position+2:score_position+3])
+                home_score = float(item[score_position:score_position+1])
+                away_score = float(item[score_position+2:score_position+3])
+                score = home_score-away_score
             else:
                 print "Match hasnt taken place yet"
             # print home_team
             # print away_team
             # print score
             if not self.game_indexed(home_team, away_team):
-                self.process_features(home_team, away_team, score)
+                self.process_features(home_team, away_team, score, home_score, away_score)
             else:
                 print home_team + " vs " + away_team + "has been already indexed"
 
@@ -90,7 +92,7 @@ class team_data_processing:
                 item['team_name'] = "Burnley"
         return team_data
 
-    def process_features(self, home_team, away_team, score):
+    def process_features(self, home_team, away_team, score, home_score,away_score):
         player_res = self.es.search(index="player_data", body={"sort": [{"date_indexed": {"order": "desc"}}], "query": {"match_all" : {}},"size" : 1})
         player_data = player_res['hits']['hits'][0]['_source']['latest_player_data']
 
@@ -132,6 +134,8 @@ class team_data_processing:
         dictionary['home_team_name'] = home_team
         dictionary['away_team_name'] = away_team
         dictionary['score'] = score
+        dictionary['home'] = home_score
+        dictionary['away'] = away_score
         dictionary['fantasy_cost_change'] = self.avg_and_minus("fantasy_cost_change", home_team_main11_data, away_team_main11_data)
         dictionary['in_dreamteam'] = self.get_dreametam_countdiff(home_team_main11_data, away_team_main11_data)
         dictionary['dreamteam_count'] = self.avg_and_minus("dreamteam_count", home_team_main11_data, away_team_main11_data)
