@@ -19,16 +19,11 @@ class get_score(object):
     def on_post(self, req, resp):
         data = req.stream.read(req.content_length or 0)
         player_json = json.loads(data)
-        # print type(player_json)
         result = self.predict_instance.process_new_feature(player_json)
-        result = result[0]
-        if result == 1.0:
-            result = player_json['team1_name'] + " wins"
-        elif result == 0:
-            result = "draw game"
-        else:
-            result = player_json['team2_name'] + " wins"
-        # result = str(result)
+        home_score = result[0]
+        away_score = result[1]
+        print result
+        result = player_json['team1_name'] + str(home_score)+"-"+str(away_score)+player_json['team2_name']
         resp.status = falcon.HTTP_201
         msg = {
             'score': result

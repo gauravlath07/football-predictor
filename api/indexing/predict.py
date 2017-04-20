@@ -53,6 +53,8 @@ class predict:
         threat = []
         red_cards = []
         goals_scored = []
+        home = []
+        away = []
         score = []
 
         for item in res:
@@ -80,6 +82,8 @@ class predict:
             threat.append(item['_source']['threat'])
             red_cards.append(item['_source']['red_cards'])
             goals_scored.append(item['_source']['goals_scored'])
+            home.append(item['_source']['home'])
+            away.append(item['_source']['away'])
             score.append(item['_source']['score'])
         d = {'yellow_cards': yellow_cards,
              'total_shot_ratio': total_shot_ratio,
@@ -104,16 +108,18 @@ class predict:
             'threat': threat,
             'red_cards': red_cards,
             'goals_scored': goals_scored,
+             'home': home,
+             'away': away,
             'score': score}
 
         self.df = pd.DataFrame(d)
-        self.df.loc[self.df["score"] > 0, "score"] = 1
-        self.df.loc[self.df["score"] == 0, "score"] = 0
-        self.df.loc[self.df["score"] < 0, "score"] = -1
-        # print df
+        # self.df.loc[self.df["score"] > 0, "score"] = 1
+        # self.df.loc[self.df["score"] == 0, "score"] = 0
+        # self.df.loc[self.df["score"] < 0, "score"] = -1
+        # print self.df
 
-        self.predictors = ["yellow_cards", "total_shot_ratio", "fantasy_points_per_game", "influence", "fantasy_cost_change", "shoot_percentage"]
-        self.alg = RandomForestClassifier(random_state=1, n_estimators=50, min_samples_split=8, min_samples_leaf=4)
+        self.predictors = ["pdo", "shots_on_target","total_shot_ratio","yellow_cards","fantasy_points_per_game", "influence", "ict_index",  "form", "ea_index", "threat", "goals_scored"]
+        self.alg = RandomForestClassifier(random_state=1, n_estimators=50, min_samples_split=7, min_samples_leaf=4)
 
         self.process = team_data_processing(es_host, es_port)
 
@@ -145,9 +151,14 @@ class predict:
             'goals_scored': [return_doc["goals_scored"]]}
 
         df_predict = pd.DataFrame(d_predict)
-        self.alg.fit(self.df[self.predictors], self.df['score'])
+        self.alg.fit(self.df[self.predictors], self.df['home'])
+        predictions_home = self.alg.predict(df_predict[self.predictors])
+        self.alg.fit(self.df[self.predictors], self.df['away'])
+        predictions_away = self.alg.predict(df_predict[self.predictors])
 
-        predictions = self.alg.predict(df_predict[self.predictors])
-        return predictions
+        print predictions_home
+        print predictions_away
+        return_score = [predictions_home[0],predictions_away[0]]
+        return return_score
 
 
