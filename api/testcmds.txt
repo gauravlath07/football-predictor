@@ -1,0 +1,2 @@
+curl -XGET 'localhost:9612/sentiment'
+curl -X POST -d '{"test":42}' "http://localhost:9612/sentiment"

@@ -1,6 +1,6 @@
 import falcon
-from get_score import get_score
-from defaultplayers import defaultplayers
+import get_score
+import defaultplayers
 from falcon_cors import CORS
 
 cors = CORS(allow_origins_list=['http://localhost:3000'],allow_all_origins=True, allow_all_headers=True, allow_all_methods=True, allow_credentials_all_origins=True)
