@@ -15,7 +15,7 @@ class ElasticSearchInteraction:
         self.es = Elasticsearch([{'host': host, 'port': port}])
         self.team_code_dict = {}
 
-        with open('indexing/utilities/team_codes.csv') as csvfile:
+        with open('utilities/team_codes.csv') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 self.team_code_dict[row['team_code']] = row['team_name']
