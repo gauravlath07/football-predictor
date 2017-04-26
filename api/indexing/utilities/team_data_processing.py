@@ -103,11 +103,14 @@ class team_data_processing:
         team_res = self.es.search(index="team_data", body={"sort": [{"date_indexed": {"order": "desc"}}], "query": {"match_all" : {}},"size" : 1})
         team_data = team_res['hits']['hits'][0]['_source']['latest_team_data']
         team_data = self.fix_team_names(team_data)
-
+        print team_data
         home_team_data = filter(lambda team_name: team_name['team_name'] == home_team, team_data)
         home_team_data = home_team_data[0]
+        print home_team_data
         away_team_data = filter(lambda team_name: team_name['team_name'] == away_team, team_data)
+        print away_team
         away_team_data = away_team_data[0]
+
 
         home_team_main11_data = []
         away_team_main11_data = []

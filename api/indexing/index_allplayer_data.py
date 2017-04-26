@@ -9,8 +9,8 @@ config = SafeConfigParser()
 config.read('utilities/config.ini')
 
 # elastic search
-# es_host = config.get('elasticsearch', 'HOST')
-es_host = "35.166.200.54"
+es_host = config.get('elasticsearch', 'HOST')
+# es_host = "35.166.200.54"
 es_port = config.getint('elasticsearch', 'PORT')
 es_index_name = config.get('elasticsearch', 'PLAYER_INDEX')
 es_doc_type = config.get('elasticsearch', 'PLAYER_DOC_TYPE')

@@ -118,8 +118,11 @@ class predict:
         # self.df.loc[self.df["score"] < 0, "score"] = -1
         # print self.df
 
-        self.predictors = ["pdo", "shots_on_target","total_shot_ratio","yellow_cards","fantasy_points_per_game", "influence", "ict_index",  "form", "ea_index", "threat", "goals_scored"]
-        self.alg = RandomForestClassifier(random_state=1, n_estimators=50, min_samples_split=7, min_samples_leaf=4)
+        self.predictors = ["form","assists","pdo", "shots_on_target","total_shot_ratio","fantasy_points_per_game",
+                           "influence", "ict_index",  "form", "ea_index", "threat", "goals_scored",
+                           "fantasy_cost_change", "shoot_percentage","fantasy_total_points" ]
+        self.alg = RandomForestClassifier(random_state=1, n_estimators=50, min_samples_split=7, min_samples_leaf=3)
+        print "changed"
 
         self.process = team_data_processing(es_host, es_port)
 
