@@ -15,7 +15,7 @@ class ElasticSearchInteraction:
         self.es = Elasticsearch([{'host': host, 'port': port}])
         self.team_code_dict = {}
 
-        with open('indexing/utilities/team_codes.csv') as csvfile:
+        with open('utilities/team_codes.csv') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 self.team_code_dict[row['team_code']] = row['team_name']
@@ -26,11 +26,14 @@ class ElasticSearchInteraction:
             self.es.indices.create(index_name, schema)
 
     def index_player_content(self, index_name, doc_type, player_data):
-
+        print "wtf bro"
         dictionary = {}
         dictionary['latest_player_data'] = []
 
         for player in player_data:
+            if "Joined" in player["news"] or "Transferred" in player["news"]:
+                print player["news"]
+                continue
             temp = {}
             temp['web_name'] = player['web_name']
             temp['team'] = self.get_team_name(str(player['team']))
@@ -62,7 +65,7 @@ class ElasticSearchInteraction:
         dictionary['date_indexed'] = datetime.datetime.today()
 
         self.es.index(index=index_name, doc_type=doc_type, body=dictionary)
-        print "indexeing successful !! "
+        print "indexing successful !! "
 
     def get_team_name(self, team_code):
         return self.team_code_dict[team_code]
