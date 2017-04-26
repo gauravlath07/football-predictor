@@ -189,6 +189,9 @@ class team_data_processing:
         return obj
 
     def avg_and_minus(self, tag, home_data, away_data):
+        if len(home_data) != 11 or len(away_data) != 11:
+            print "You fucked up"
+            sys.exit()
         home_obj = sum(d[tag] for d in home_data) / len(home_data)
         away_obj = sum(d[tag] for d in away_data) / len(away_data)
         return home_obj-away_obj
@@ -251,7 +254,7 @@ class team_data_processing:
         dictionary['selected_percentage'] = self.avg_and_minus("selected_percentage", home_team_main11_data, away_team_main11_data)
         dictionary['form'] = self.avg_and_minus("form", home_team_main11_data, away_team_main11_data)
         dictionary['fantasy_transfers_out_in'] = self.avg_and_minus("fantasy_transfers_out_in", home_team_main11_data,away_team_main11_data)
-        dictionary['fantasy_total_points'] = self.avg_and_minus("fantasy_points_per_game", home_team_main11_data,away_team_main11_data)
+        dictionary['fantasy_total_points'] = self.avg_and_minus("fantasy_total_points", home_team_main11_data,away_team_main11_data)
         dictionary['fantasy_points_per_game'] = self.avg_and_minus("fantasy_points_per_game", home_team_main11_data,away_team_main11_data)
         dictionary['minutes_played'] = self.avg_and_minus("minutes_played", home_team_main11_data,away_team_main11_data)
         dictionary['goals_scored'] = self.avg_and_minus("goals_scored", home_team_main11_data, away_team_main11_data)
