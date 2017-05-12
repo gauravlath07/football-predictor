@@ -1,5 +1,10 @@
 # Team-up
 
+### Important Links
+Website link - http://football.gauravlath.com <br />
+Front end repository - https://github.com/chenleishen/football-predictor-frontend <br />
+Back end repository - https://github.com/gauravlath07/football-predictor
+
 ### About
 
 Team-up is an angular, node, express website which uses statistics from English Premier League to predict the outcome of football games. 
@@ -37,11 +42,6 @@ Currently the data model consists of all English Premier League games from March
 * Predicting possession
 
 The opportunities are literally endless...
-
-### Important Links
-Website link - http://football.gauravlath.xyz <br />
-Front end repository - https://github.com/chenleishen/football-predictor-frontend <br />
-Back end repository - https://github.com/gauravlath07/football-predictor
 
 ## Want to contribute ??
 
