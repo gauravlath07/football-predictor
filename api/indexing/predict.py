@@ -161,7 +161,7 @@ class predict:
 
         print predictions_home
         print predictions_away
-        return_score = [predictions_home[0],predictions_away[0]]
+        return_score = [int(predictions_home[0]),int(predictions_away[0])]
         return return_score
 
 
